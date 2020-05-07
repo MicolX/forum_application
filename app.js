@@ -1,13 +1,16 @@
-const express = require('express')
-const app = express()
-const configRoutes = require('./routes')
-const handlebars = require('express-handlebars')
+const express = require('express');
+const app = express();
+const static = express.static(__dirname + '/public');
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true}))
+const configRoutes = require('./routes');
+const exphbs = require('express-handlebars');
 
-app.engine('handlebars', handlebars({ defaultLayout: 'template'}))
-app.set('view engine', 'handlebars')
+app.use('/public', static);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
 
 
 //cookies
@@ -50,5 +53,6 @@ app.use(async (req, res, next) => {
 configRoutes(app)
 
 app.listen(3000, () => {
-    console.log("Forum is online!")
-})
+	console.log("We've now got a server!");
+	console.log('Your routes will be running on http://localhost:3000');
+});

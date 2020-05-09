@@ -1,6 +1,14 @@
+<<<<<<< Updated upstream
 const express = require('express')
 const app = express()
 // const static = express.static(__dirname + '/public')
+=======
+
+
+const express = require('express');
+const app = express();
+const static = express.static(__dirname + '/public');
+>>>>>>> Stashed changes
 
 const configRoutes = require('./routes')
 const handlebars = require('express-handlebars')

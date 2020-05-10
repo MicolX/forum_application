@@ -17,9 +17,10 @@ module.exports = {
 
         const insertInfo = await postCollection.insertOne(newPost)
         if (insertInfo.insertedCount == 0) throw "Failed to create post into db"
+        return await this.getPost(insertInfo.insertedId)
     },
 
-    async getAllPost(id) {
+    async getPost(id) {
         if (!id) throw 'no id'
         if (typeof id == 'string') id = objectID.createFromHexString(id)
         const postCollection = await post()

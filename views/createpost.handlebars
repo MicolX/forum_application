@@ -1,23 +1,20 @@
 <div>
   <h1 class="here1">Create your post</h1>
   
-  
-  
-  <form action="/result" method="POST">
-    <label for = "title">title:</label>
-    <input type="text" id="title" name="title" placeholder="enter your title" value="{{post.text}}" class="full-width-input"/>
+  <form action="/new" method="POST" id="createPost">
+    <label for = "titleID">title:</label>
+    <input type="text" id="titleID" name="title" placeholder="enter your title" value="{{post.text}}" class="full-width-input"/>
     
-
-    <label for = "content">content:</label>
-    <textarea name="content" cols="100" rows="50"></textarea>
+    <label for = "contentID">content:</label>
+    <textarea name="content" id="contentID" cols="100" rows="50"></textarea>
     
-
     <button type="submit" class = "submit">submit</button>
   </form>
+  <div id="error" hidden></div>
   
-
 <ul>
   <li><a href="login">Back to Home</a></li>
 </ul>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="../public/js/createPost_validation.js"></script>
 </div>

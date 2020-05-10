@@ -3,18 +3,31 @@ const user = mongoCollections.user
 const objectID = require('mongodb').ObjectID
 
 module.exports = {
-    async addUser(username, password, firstName, lastName, Email) {
-        if (!username || !password || !firstName || !lastName) throw 'Incomplete info to add an user'
+    async addUser(username, password, Email) {
+        if (!username || !password || !Email) throw 'Incomplete info to add an user'
         let newUser = {
             username: username,
             password: password,
-            firstName: firstName,
-            lastName: lastName
+            email: Email
         }
-        if (Email) newUser.email = Email
+        
         const userCollection = await user()
         const insertInfo = await userCollection.insertOne(newUser)
         if (insertInfo.insertedCount == 0) throw 'Failed to add an user'
+        else return true
+    },
+
+    async getUser(username) {
+        const userCollection = await user()
+        const foundUser = await userCollection.findOne({username: username})
+        return foundUser
+    },
+
+    async userExist(username) {
+        const userCollection = await user()
+        const foundUser = await userCollection.findOne({username: username})
+        if (foundUser === null) return false
+        return true
     },
 
     async updatePassword(id, password) {

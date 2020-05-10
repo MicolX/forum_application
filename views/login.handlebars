@@ -1,21 +1,25 @@
 <head>
 <title>Login Form Design</title>
     <link rel="stylesheet" type="text/css" href="/public/css/login2.css">
+</head>
 <body>
     <div class="loginbox">
     <img src="/public/images/SITF.jpeg" class="avatar">
         <h1>Login Here</h1>
-        <form>
-            <p>Username</p>
-            <input type="text" name="" placeholder="Enter Username">
-            <p>Password</p>
-            <input type="password" name="" placeholder="Enter Password">
-            <input type="submit" name="" value="Login">
+        <form action="/login" method="POST" id="login-form">
+            <label for="login-name">Username</label>
+            <input type="text" name="username" placeholder="Enter Username" id="login-name">
+            <label for="login-password">Password</label>
+            <input type="password" name="password" placeholder="Enter Password" id="login-password">
+            <label for="submit"><input type="submit" name="" value="Login" id="submit"></label>
             <a href="#">Lost your password?</a><br>
-            <a href="#">Don't have an account?</a>
+            <a href="http://localhost:3000/signup">Don't have an account?</a>
         </form>
-        
     </div>
-
+    <div id="error" hidden></div>
+    {{#if fail}}
+    <div>Please verify your username and password</div>
+    {{/if}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../public/js/login_validation.js"></script>
 </body>
-</head>

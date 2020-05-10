@@ -25,16 +25,17 @@ app.use(
 );
 
 // blocking methods on mainpage
-app.use('/', async (req, res, next) => {
+// app.use('/', async (req, res, next) => {
 
-    if(req.method == 'GET'){ 
-        next();
-    }
-    else{
-        res.status(404);
-        res.send('METHOD NOT ALLOWED')
-    }
-});
+//     if(req.method == 'GET' && !req.session.user){ 
+// 		res.redirect('/login')
+//     }
+//     else{
+//         res.status(404);
+//         res.send('METHOD NOT ALLOWED')
+//     }
+// });
+
 
 // activity logging middleware
 app.use(async (req, res, next) => {

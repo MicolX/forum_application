@@ -29,6 +29,14 @@ module.exports = {
         return aPost
     },
 
+    async getPostByCategory(category) {
+        console.log(category)
+        if (!category) throw 'no category'
+        const postCollection = await post()
+        const allPosts = await postCollection.find({"category" : category}).toArray()
+        return allPosts
+    },
+
     async getAllPost() {
         const postCollection = await post()
         const allPosts = await postCollection.find({}).toArray()

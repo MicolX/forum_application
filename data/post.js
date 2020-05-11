@@ -12,7 +12,8 @@ module.exports = {
             'title': title,
             'author': author,
             'category': category,
-            'content': content
+            'content': content,
+            'comments': [] 
         }
 
         const insertInfo = await postCollection.insertOne(newPost)
@@ -61,5 +62,21 @@ module.exports = {
         const postCollection = await post()
         const updateInfo = await postCollection.updateOne({_id: id}, {$set: updatePost})
         if (updateInfo.modifiedCount == 0) throw "Failed to update post"
+    },
+
+    async addComment(id, author, comment) {
+        try {
+            if (!id || !author || !comment) throw 'Incomplete info to add comment'
+            const aComment = {
+                author: author,
+                content: comment
+            }
+            if (typeof id == 'string') id = objectID.createFromHexString(id)
+            const postCollection = await post()
+            const updateInfo = await postCollection.updateOne({_id: id}, {$push: {comments: aComment}})
+            if (updateInfo.modifiedCount == 0) throw 'Failed to add comment'
+        } catch(e) {
+            throw e
+        }
     }
 }

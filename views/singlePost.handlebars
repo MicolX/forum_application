@@ -1,6 +1,11 @@
-<h1>{{title}}</h1>
-<h2>{{author}}</h2>
-<p>{{content}}</p>
-<textarea name="comment" id="commentID" cols="30" rows="10">Wanna say anything?</textarea>
-<button type="submit">comment</button>
-<a href="/">back to main page</a>
+<link rel="stylesheet" href="/public/css/createPost.css">
+
+<div class="container">
+    <h1>Title : {{title}}</h1>
+    <p>Author : {{author}}</p>
+    <p>Content : {{content}}</p>
+    <label for = "contentID">Write you comment:</label>
+    <textarea name="content" id="contentID" cols="100" rows="10"></textarea>
+    <button type="submit">comment</button>
+    <a href="/">back to main page</a>
+</div>

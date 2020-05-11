@@ -1,16 +1,25 @@
-<div>
-  <h1 class="here1">Create your post</h1>
+<link rel="stylesheet" href="/public/css/createPost.css">
+
+<div class="container">
+  <h1>Create your post now</h1>
   
   <form action="/new" method="POST" id="createPost">
-    <label for = "titleID">title:</label>
-    <input type="text" id="titleID" name="title" placeholder="enter your title" value="{{post.text}}" class="full-width-input"/>
+    <div>
+      <label for = "titleID">title:</label>
+      <input id = "titleID" type="text" id="titleID" name="title" placeholder="enter your title" value="{{post.text}}" class="full-width-input"/>  
+    </div>
     
-    <label for = "contentID">content:</label>
-    <textarea name="content" id="contentID" cols="100" rows="10"></textarea>
+    <div>
+      <label for = "contentID">content:</label>
+      <textarea name="content" id="contentID" cols="100" rows="10"></textarea>
+    </div>
 
-    <input type="radio" name="category" value="Automobile" /> Automobile
-    <input type="radio" name="category" value="Food" /> Food
-    <input type="radio" name="category" value="Course" /> Course
+
+    <div>
+      <input type="radio" name="category" value="Automobile" /> Automobile
+      <input type="radio" name="category" value="Food" /> Food
+      <input type="radio" name="category" value="Course" /> Course
+    </div>
     
     <button type="submit" class = "submit">submit</button>
   </form>
@@ -22,3 +31,4 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="../public/js/createPost_validation.js"></script>
 </div>
+

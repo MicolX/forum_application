@@ -15,8 +15,40 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.get('/car')
+router.get('/Automobile', async (req, res) => {
+    if (req.session.user) { // add checking cookie expiration
 
-router.get('/food')
+        const allPosts = await postData.getPostByCategory("Automobile")
+        res.render('web', {posts: allPosts, category: "Automobile"})
+    }
+    else {
+        res.status(403);
+        res.render('login');
+    }
+})
+
+router.get('/Food', async (req, res) => {
+    if (req.session.user) { // add checking cookie expiration
+
+        const allPosts = await postData.getPostByCategory("Food")
+        res.render('web', {posts: allPosts, category: "Food"})
+    }
+    else {
+        res.status(403);
+        res.render('login');
+    }
+})
+
+router.get('/Course', async (req, res) => {
+    if (req.session.user) { // add checking cookie expiration
+
+        const allPosts = await postData.getPostByCategory("Course")
+        res.render('web', {posts: allPosts, category: "Course"})
+    }
+    else {
+        res.status(403);
+        res.render('login');
+    }
+})
 
 module.exports = router

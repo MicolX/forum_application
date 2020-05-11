@@ -172,7 +172,22 @@ width:1350px;
 height:250px;
 }
 
+.list{
+
+position:absolute;
+background-color:rgb(255, 255, 255);
+top:500px;
+right:500px;
+width:1000px;
+height:1000px;
+text-align: center;
+font-size: 14pt;
+}
+
 </style>
+
+<script src="/public/js/check.js"></script>
+
 <body>
 <div class=bg></div>
 <br><br><br>
@@ -191,7 +206,9 @@ height:250px;
   <li>Add Category</li>
 </ul></li>
 <li><a href="login">Sign in</a></li>
-<li ><a href="signup">Register</a></li>
+<li><a href="signup">Register</a></li>
+<li><input type="text" placeholder="Search.." name="search" id="searchTxt">
+  <button type="submit" onclick="jsSearch()">SEARCH</button></li>
 </ul>
 </p> 
 <div><a href="" target="_blank">
@@ -200,7 +217,11 @@ height:250px;
 <span class=border>
 <img src="/public/images/header-background.jpg"  id="slide" height=250px width=1500px>
 </span> 
+
+<ol id="results" class="list"></ol>
+
 <div class="afoot"></div>
+
 <div class="foot" style="color:white;">Designing in progress</div>
 
 <p style="position:absolute; top:230px; right:600px;font-size:22px;font-family:sans-serif;opacity:.7"><b>About SITForum</b></p>

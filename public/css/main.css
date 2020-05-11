@@ -1,4 +1,8 @@
 /*title border*/
+.div1{
+  display: inline-block;
+}
+
 .bg{
     position:relative;
     top:150px;
@@ -154,7 +158,7 @@
     position:absolute;
     background-color:black;
     top:1900px;
-    width:1350px;
+    width:100%;
     height:80px;
     right:0px;
     opacity:.8;
@@ -167,4 +171,19 @@
     right:0px;
     width:1350px;
     height:250px;
+    }
+
+    .postsDiv{
+      display: inline-block;
+      text-align: center; 
+      background-color:gainsboro;
+      border-radius: 20px;
+      width: 2525px;
+      height: 100px;
+      margin: auto;
+      position: static;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
     }

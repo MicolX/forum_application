@@ -19,10 +19,10 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     if (req.session.user) {
         const body = req.body
-        if (! body.title || !body.content) throw "Incomplete info to create post"
+        if (! body.title || !body.content || !body.category) throw "Incomplete info to create post"
         const username = req.session.user
         try {
-            const newPost = await postData.createPost(body.title, username, "nothing", body.content)
+            const newPost = await postData.createPost(body.title, username, body.category, body.content)
             const id = String(newPost._id)
             res.redirect('/post/'+id)
         } catch(e) {

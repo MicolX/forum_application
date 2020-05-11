@@ -15,4 +15,8 @@ router.get('/', async (req, res) => {
     }
 })
 
+router.get('/car')
+
+router.get('/food')
+
 module.exports = router

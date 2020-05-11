@@ -31,7 +31,6 @@ router.post('/', async (req, res) => {
     } else {
         res.render('login')
     }
-
 });
 
 

@@ -1,17 +1,22 @@
 const express = require('express')
 const router = express.Router()
+const data = require('../data')
+const postData = data.post
 
 // check cookie if logged in and not expired, if so render main page if not redirect to login.
 router.get('/', async (req, res) => {
     if (req.session.user) { // add checking cookie expiration
-        console.log('going to main page')
-        res.render('web')
+        const allPosts = await postData.getAllPost()
+        res.render('web', {posts: allPosts})
     }
     else {
         res.status(403);
-        console.log('going to login')
         res.render('login');
     }
 })
+
+router.get('/car')
+
+router.get('/food')
 
 module.exports = router

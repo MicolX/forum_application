@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const data = require('../data')
+const postData = data.post
 
 // render create post page only if logged in (check cookie), if not logged in redirect to login
 router.get('/', async (req, res) => {
@@ -14,8 +16,21 @@ router.get('/', async (req, res) => {
 
 
 // create post page only if logged in (check cookie), if not logged in redirect to login
-router.post('/', (req, res) => {
-
+router.post('/', async (req, res) => {
+    if (req.session.user) {
+        const body = req.body
+        if (! body.title || !body.content) throw "Incomplete info to create post"
+        const username = req.session.user
+        try {
+            const newPost = await postData.createPost(body.title, username, "nothing", body.content)
+            const id = String(newPost._id)
+            res.redirect('/post/'+id)
+        } catch(e) {
+            throw e
+        }
+    } else {
+        res.render('login')
+    }
 });
 
 

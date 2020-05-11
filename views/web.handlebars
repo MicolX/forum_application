@@ -1,178 +1,7 @@
 <head>
 <title>Home</title>
-<style type="text/css">
-/*title border*/
-.bg{
-position:relative;
-top:150px;
-right:8px;
-height:5.5%;
-background-color:black;
-opacity:0.2;
-width:1450px;
-z-index:3;
-}
+<link rel="stylesheet" href="../public/css/main.css">
 
-.bg label
-{
-marign-right:400px;
-}
-
-/*logo*/
-div a .bgimg
-{
-position:absolute;
-top:95px;
-left:45px;
-cursor:hand;
--webkit-animation-name: logo;
--webkit-animation-duration: .55s;
--webkit-animation-delay: .5s;
--moz-animation-name: logo;
--moz-animation-duration: .55s;
--moz-animation-delay: .5s;
-animation-name: logo;
-animation-duration: .55s;
-animation-delay: .5s;
-z-index:3;
-}
-@-webkit-keyframes logo {
-    30%{transform:rotate(3deg); }  
-    65% {transform:rotate(-3deg);}
-    90%{transform:rotate(1deg);}
-    95%{transform:rotate(-1deg);}
-    100%{transform:rotate(0deg);}
-}
-/*menu*/
-ul
-{
-position:absolute;
-left:150px;
-top:145px;
-color:#070707;
- list-style: none;
-display:inline;
-z-index:3;
-}
-ul li a{text-decoration:none;
-color:#070707;}
-ul li a:hover
-{
-color:white;
-}
-ul li
-{
-position:relative;
-top:0px;
-margin-left:25px;
-display:inline-block;
-cursor: pointer;
-  -webkit-transition: all 0.2s;
-  -moz-transition: all 0.2s;
-  -ms-transition: all 0.2s;
-  -o-transition: all 0.2s;
-  transition: all 0.2s;
-}
-ul li:hover
-{
-color:white;
-}
-ul li ul {
-  padding: 0;
-  position: absolute;
-  top: 26.5px;
-  left: -22px;
-  width: 250px;
-  height:180px;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  display: none;
-  opacity: 0;
-visibility:none;
-  -webkit-transiton: opacity 0.2s;
-  -moz-transition: opacity 0.2s;
-  -ms-transition: opacity 0.2s;
-  -o-transition: opacity 0.2s;
-  -transition: opacity 0.2s;
-}
-ul li ul li { 
-position:relative;
-  padding-left:25px;
-  padding-top:15px;
-  padding-bottom:15px;
-  background: #555; 
-  display: block; 
-  color: #fff;
-  text-shadow: 0 -1px 0 #000;
-z-index:4;
-}
-ul li ul li:hover { background: #666; }
-ul li:hover ul {
-  display: block;
-  opacity: 1;
-  visibility: visible;
-}
-ul li ul li ul li{
-position:relative;
-top:-19px;
-left:220px;
-display:none;
-visibility:none;
-}
-ul li ul li ul:hover li
-{
-display:block;
-visibility:visible;
-}
-ul li ul li ul li ul li{
-position:relative;
-top:-19px;
-left:220px;
-opacity:0;
-}
-ul li ul li ul li ul:hover li
-{
-opacity:1;
-}
-.border
-{
-position:absolute;
-top:0px;
-right:0px;
-width:1400px;
-height:150px;
-border-color: #eaeaea;
-overflow:hidden;
-z-index:1;
-}
-label
-{
-background-color:black;
-height:10%;
-}
-/*foot*/
-.foot
-{
-position:absolute;
-background-color:black;
-top:1900px;
-width:1350px;
-height:80px;
-right:0px;
-opacity:.8;
-}
-.afoot
-{
-position:absolute;
-background-color:#8B0B04;
-top:1650px;
-right:0px;
-width:1350px;
-height:250px;
-}
-
-</style>
 <body>
 <div class=bg></div>
 <br><br><br>
@@ -211,4 +40,12 @@ height:250px;
    or only accessible to select groups. We want to connect the people who have knowledge to the people who need it, to bring together people with different perspectives so they can understand each other better,
     and to empower everyone to share their knowledge for the benefit of the rest of the world.
     </p>
+
+{{#each posts}}
+<div>
+  <a href="/post/{{this._id}}"> {{this.title}} </a>
+  <p>{{this.author}}</p>
+</div>
+{{/each}}
+
 </body>

@@ -7,7 +7,7 @@ const userRoutes = require('./user');
 const signupRoutes = require('./signup');
 const autoRoutes = require('./automobile');
 const autoPostsRoutes = require('./allPostOfAutomobile');
-
+const postRoutes = require('./post')
 
 
 
@@ -19,8 +19,12 @@ const constructor = (app) => {
     app.use('/logout', logoutRoutes);
     app.use('/user', userRoutes);
     app.use('/signup', signupRoutes);
+    app.use('/post', postRoutes)
     app.use('/automobile', autoRoutes);
     app.use('/allPostOfAutomobile', autoPostsRoutes);
+    app.use('*', (req, res) => {
+        res.sendStatus(404)
+    })
     
 }
 

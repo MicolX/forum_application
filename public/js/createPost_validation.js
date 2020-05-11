@@ -17,4 +17,11 @@ $('#createPost').submit((event) => {
         return
     }
 
+    if (!$('#auto').is(':checked') && !$('#food').is(':checked') && !$('#course').is(':checked')){
+        event.preventDefault()
+        $('#error').html('You must choose a category')
+        $('#error').show()
+        return
+    }
+
 })

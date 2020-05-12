@@ -18,6 +18,10 @@ router.post('/:id', async (req, res) => {
         const username = req.session.user
         const comment = req.body.comment
         await postData.addComment(id, username, comment)
+
+        await postData.addLike(req.params.qty1,username)
+        await postData.addDislike(req.params.qty2,username)
+
         res.redirect('/post/'+id)
     } catch(e) {
         res.status(400).json({error: e})

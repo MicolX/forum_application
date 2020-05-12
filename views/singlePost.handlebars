@@ -5,11 +5,21 @@
   <h1>Title : {{title}}</h1>
   <p>Author : {{author}}</p>
   <p>Content : {{content}}</p>
+
+<form action="/post/{{id}}" method = "POST"> 
+    <a class="like"><i class="fa fa-thumbs-o-up"></i>  
+        Like <input class="qty1" name="qty1" readonly="readonly" type="text" value="0" />
+    </a>
+    <a class="dislike"><i class="fa fa-thumbs-o-down"></i> 
+        Dislike <input class="qty2"  name="qty2" readonly="readonly" type="text" value="0" />
+    </a>
+</form>
+
   <h3>Comments</h3>
   {{#if comments}}
   {{#each comments}}
-  <div>
-    <h4>{{this.author}}</h4>
+  <div class= "commentsDiv">
+    <h4>user: {{this.author}}</h4>
     <p>{{this.content}}</p>
   </div>
   {{/each}}

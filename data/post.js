@@ -78,5 +78,37 @@ module.exports = {
         } catch(e) {
             throw e
         }
+    },
+
+    async addLike(qty,username) {
+        try {
+            if (!qty || !username) throw 'Incomplete info '
+            const like = {
+                username: username,
+                qty: qty
+            }
+            if (typeof id == 'string') id = objectID.createFromHexString(id)
+            const postCollection = await post()
+            const updateInfo = await postCollection.updateOne({_id: id}, {$push: {likes: like}})
+            if (updateInfo.modifiedCount == 0) throw 'Failed to add like'
+        } catch(e) {
+            throw e
+        }
+    },
+
+    async addDislike(qty,username) {
+        try {
+            if (!qty || !username) throw 'Incomplete info '
+            const dislike = {
+                username: username,
+                qty: qty
+            }
+            if (typeof id == 'string') id = objectID.createFromHexString(id)
+            const postCollection = await post()
+            const updateInfo = await postCollection.updateOne({_id: id}, {$push: {dislikes: dislike}})
+            if (updateInfo.modifiedCount == 0) throw 'Failed to add dislike'
+        } catch(e) {
+            throw e
+        }
     }
 }

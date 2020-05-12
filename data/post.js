@@ -13,9 +13,7 @@ module.exports = {
             'author': author,
             'category': category,
             'content': content,
-            'comments': [], 
-            'like': [],
-            'dislike': []
+            'comments': [] 
         }
 
         const insertInfo = await postCollection.insertOne(newPost)
@@ -58,10 +56,11 @@ module.exports = {
 
     async updatePost(id, title, category, content) {
         let updatePost = {}
-        if (title) newPost.title = title
-        if (category) newPost.category = category
-        if (content) newPost.content = content
+        if (title) updatePost.title = title
+        if (category) updatePost.category = category
+        if (content) updatePost.content = content
         const postCollection = await post()
+        if (typeof id == 'string') id = objectID.createFromHexString(id)
         const updateInfo = await postCollection.updateOne({_id: id}, {$set: updatePost})
         if (updateInfo.modifiedCount == 0) throw "Failed to update post"
     },
@@ -77,73 +76,6 @@ module.exports = {
             const postCollection = await post()
             const updateInfo = await postCollection.updateOne({_id: id}, {$push: {comments: aComment}})
             if (updateInfo.modifiedCount == 0) throw 'Failed to add comment'
-        } catch(e) {
-            throw e
-        }
-    },
-
-    async addLike(id, author) {
-        try {
-            if (!author || !id) throw 'Incomplete info '
-            
-            if (typeof id == 'string') id = objectID.createFromHexString(id)
-            const postCollection = await post()
-            
-            // const PostsInId = await postCollection.find({_id: id})
-            // const likeArr = PostsInId.like
-            // const dislikeArr = PostsInId.dislike
-            // if(likeArr.includes(author) || dislikeArr.includes(author)) throw "you already like or dislike this post!"
-
-            const updateInfo = await postCollection.update({_id: id}, {$push: {like: author}})
-            if (updateInfo.modifiedCount == 0) throw 'Failed to add like'
-        } catch(e) {
-            throw e
-        }
-    },
-
-    async addDislike(id,author) {
-        try {
-            if (!author || !id) throw 'Incomplete info '
-            
-            if (typeof id == 'string') id = objectID.createFromHexString(id)
-            const postCollection = await post()
-
-            // const PostsInId = await postCollection.find({_id: id})
-            // const likeArr = PostsInId.like
-            // const dislikeArr = PostsInId.dislike
-            // if(likeArr.includes(author) || dislikeArr.includes(author)) throw "you already like or dislike this post!"
-
-            const updateInfo = await postCollection.update({_id: id}, {$push: {dislike: author}})
-
-            if (updateInfo.modifiedCount == 0) throw 'Failed to add dislike'
-        } catch(e) {
-            throw e
-        }
-    },
-
-    async deleteLike(id, author) {
-        try {
-            if (!author || !id) throw 'Incomplete info '
-            
-            if (typeof id == 'string') id = objectID.createFromHexString(id)
-            const postCollection = await post()
-            
-            const updateInfo = await postCollection.update({_id: id}, {$pull: {like: author}})
-            if (updateInfo.modifiedCount == 0) throw 'Failed to add like'
-        } catch(e) {
-            throw e
-        }
-    },
-
-    async deleteDislike(id, author) {
-        try {
-            if (!author || !id) throw 'Incomplete info '
-            
-            if (typeof id == 'string') id = objectID.createFromHexString(id)
-            const postCollection = await post()
-            
-            const updateInfo = await postCollection.update({_id: id}, {$pull: {dislike: author}})
-            if (updateInfo.modifiedCount == 0) throw 'Failed to add like'
         } catch(e) {
             throw e
         }

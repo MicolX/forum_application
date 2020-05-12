@@ -1,17 +1,62 @@
 <link rel="stylesheet" href="/public/css/createPost.css">
 
 <div class="container">
+  {{#if update}}
+  <h1>Update your post now</h1>
+  
+  <form action="/update/{{id}}" method="POST" id="updatePost">
+    <div>
+      <label for = "titleID">title:</label>
+      <input id = "titleID" type="text" id="titleID" name="title" placeholder="enter your title" value="{{title}}" class="full-width-input"/>  
+    </div>
+    
+    <div>
+      <label for = "contentID">content:</label>
+      <textarea name="content" id="contentID" cols="100" rows="10">{{content}}</textarea>
+    </div>
+
+
+    <div>
+      <label for="auto">
+        {{#if autoCategory}}
+        <input type="radio" name="category" value="Automobile" id="auto" checked/> Automobile
+        {{else}}
+        <input type="radio" name="category" value="Automobile" id="auto"/> Automobile
+        {{/if}}
+      </label>
+
+      <label for="food">
+        {{#if foodCategory}}
+        <input type="radio" name="category" value="Food" id="food" checked/> Food
+        {{else}}
+        <input type="radio" name="category" value="Food" id="food"/> Food
+        {{/if}}
+      </label>
+
+      <label for="course">
+        {{#if courseCategory}}
+        <input type="radio" name="category" value="Course" id="course" checked/> Course
+        {{else}}
+        <input type="radio" name="category" value="Course" id="course"/> Course
+        {{/if}}
+      </label>
+    </div>
+    
+    <button type="submit" class = "submit">submit</button>
+  </form>
+
+  {{else}}
   <h1>Create your post now</h1>
   
   <form action="/new" method="POST" id="createPost">
     <div>
       <label for = "titleID">title:</label>
-      <input id = "titleID" type="text" id="titleID" name="title" placeholder="enter your title" value="{{post.text}}" class="full-width-input"/>  
+      <input id = "titleID" type="text" id="titleID" name="title" placeholder="enter your title" class="full-width-input"/>  
     </div>
     
     <div>
       <label for = "contentID">content:</label>
-      <textarea name="content" id="contentID" cols="100" rows="10"></textarea>
+      <textarea name="content" id="contentID" placeholder="anything to share" cols="100" rows="10"></textarea>
     </div>
 
 
@@ -19,9 +64,11 @@
       <label for="auto">
         <input type="radio" name="category" value="Automobile" id="auto"/> Automobile
       </label>
+
       <label for="food">
         <input type="radio" name="category" value="Food" id="food"/> Food
       </label>
+
       <label for="course">
         <input type="radio" name="category" value="Course" id="course"/> Course
       </label>
@@ -29,10 +76,11 @@
     
     <button type="submit" class = "submit">submit</button>
   </form>
+  {{/if}}
   <div id="error" hidden></div>
   
 <ul>
-  <li><a href="login">Back to Home</a></li>
+  <li><a href="http://localhost:3000">Back to Home</a></li>
 </ul>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="../public/js/createPost_validation.js"></script>

@@ -15,34 +15,7 @@ $('#add-comment').submit((event) => {
 
 
 
-// $(function () {
 
-//     $(".like").click(function () {
-//         var input = $(this).find('.qty1');
-//         input.val(input.val()+ "+1");
-        
-//         $(this).off('click');
-//         $(".dislike").off('click');
-
-//         $(".likeOrDislike").click();
-
-
-
-        
-//     });
-//     $(".dislike").click(function () {
-//         var input = $(this).find('.qty2');
-//         input.val(input.val()+ "+1");
-        
-//         $(this).off('click');
-//         $(".like").off('click');
-
-//         $(".likeOrDislike").click();
- 
-//     });
-
-    
-// });
 
 
 

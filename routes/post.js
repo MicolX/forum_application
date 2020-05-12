@@ -50,13 +50,22 @@ router.post('/:id/like', async (req, res) => {
         const likeArr = post.like
         const dislikeArr = post.dislike
 
-        if(likeArr.includes(username) || dislikeArr.includes(username)) {
-            res.redirect('/post/'+id)
-        }else{
+        if(!likeArr.includes(username) && !dislikeArr.includes(username)) {
             await postData.addLike(id,username)
-
+            res.redirect('/post/'+id)
+        }else if(likeArr.includes(username) && !dislikeArr.includes(username)){
+            await postData.deleteLike(id,username)
+            res.redirect('/post/'+id)
+        }else if(!likeArr.includes(username) && dislikeArr.includes(username)){
+            await postData.deleteDislike(id,username)
+            await postData.addLike(id,username)
             res.redirect('/post/'+id)
         }
+        else{
+            res.redirect('/post/'+id)
+        }
+
+
 
     } catch(e) {
         res.status(400).json({error: "error in like"})
@@ -73,11 +82,18 @@ router.post('/:id/dislike', async (req, res) => {
         const dislikeArr = post.dislike
 
 
-        if(likeArr.includes(username) || dislikeArr.includes(username)) {
-            res.redirect('/post/'+id)
-        }else{
+        if(!likeArr.includes(username) && !dislikeArr.includes(username)) {
             await postData.addDislike(id,username)
-
+            res.redirect('/post/'+id)
+        }else if(!likeArr.includes(username) && dislikeArr.includes(username)){
+            await postData.deleteDislike(id,username)
+            res.redirect('/post/'+id)
+        }else if(likeArr.includes(username) && !dislikeArr.includes(username)){
+            await postData.deleteLike(id,username)
+            await postData.addDislike(id,username)
+            res.redirect('/post/'+id)
+        }
+        else{
             res.redirect('/post/'+id)
         }
 

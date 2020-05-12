@@ -84,7 +84,7 @@ module.exports = {
 
     async addLike(id, author) {
         try {
-            if (!author) throw 'Incomplete info '
+            if (!author || !id) throw 'Incomplete info '
             
             if (typeof id == 'string') id = objectID.createFromHexString(id)
             const postCollection = await post()
@@ -103,7 +103,7 @@ module.exports = {
 
     async addDislike(id,author) {
         try {
-            if (!author) throw 'Incomplete info '
+            if (!author || !id) throw 'Incomplete info '
             
             if (typeof id == 'string') id = objectID.createFromHexString(id)
             const postCollection = await post()
@@ -116,6 +116,34 @@ module.exports = {
             const updateInfo = await postCollection.update({_id: id}, {$push: {dislike: author}})
 
             if (updateInfo.modifiedCount == 0) throw 'Failed to add dislike'
+        } catch(e) {
+            throw e
+        }
+    },
+
+    async deleteLike(id, author) {
+        try {
+            if (!author || !id) throw 'Incomplete info '
+            
+            if (typeof id == 'string') id = objectID.createFromHexString(id)
+            const postCollection = await post()
+            
+            const updateInfo = await postCollection.update({_id: id}, {$pull: {like: author}})
+            if (updateInfo.modifiedCount == 0) throw 'Failed to add like'
+        } catch(e) {
+            throw e
+        }
+    },
+
+    async deleteDislike(id, author) {
+        try {
+            if (!author || !id) throw 'Incomplete info '
+            
+            if (typeof id == 'string') id = objectID.createFromHexString(id)
+            const postCollection = await post()
+            
+            const updateInfo = await postCollection.update({_id: id}, {$pull: {dislike: author}})
+            if (updateInfo.modifiedCount == 0) throw 'Failed to add like'
         } catch(e) {
             throw e
         }

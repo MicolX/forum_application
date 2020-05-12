@@ -5,11 +5,24 @@
   <h1>Title : {{title}}</h1>
   <p>Author : {{author}}</p>
   <p>Content : {{content}}</p>
+
+  <form action="/post/{{id}}/like" method = "POST" class="likeForm"> 
+    <div><p>like:{{lengthOfLike}}</p></div> 
+    <div><button type="submit" class = "likeBTN">like!</button></div>
+  </form>
+
+  <form action="/post/{{id}}/dislike" method = "POST" class = "dislikeForm"> 
+    <div><p>dislike:{{lengthOfDislike}}</p></div>
+    <div><button type="submit" class = "dislikeBTN">dislike!</button></div>
+  </form>
+
+
+
   <h3>Comments</h3>
   {{#if comments}}
   {{#each comments}}
-  <div>
-    <h4>{{this.author}}</h4>
+  <div class= "commentsDiv">
+    <h4>user: {{this.author}}</h4>
     <p>{{this.content}}</p>
   </div>
   {{/each}}

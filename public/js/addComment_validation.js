@@ -1,3 +1,5 @@
+
+
 $('#add-comment').submit((event) => {
     $('#error').hide()
     const content = $('#commentID').val()
@@ -10,3 +12,15 @@ $('#add-comment').submit((event) => {
     }
 
 })
+
+
+
+
+
+
+
+
+
+
+
+

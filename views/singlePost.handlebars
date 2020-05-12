@@ -6,14 +6,17 @@
   <p>Author : {{author}}</p>
   <p>Content : {{content}}</p>
 
-<form action="/post/{{id}}" method = "POST"> 
-    <a class="like"><i class="fa fa-thumbs-o-up"></i>  
-        Like <input class="qty1" name="qty1" readonly="readonly" type="text" value="0" />
-    </a>
-    <a class="dislike"><i class="fa fa-thumbs-o-down"></i> 
-        Dislike <input class="qty2"  name="qty2" readonly="readonly" type="text" value="0" />
-    </a>
-</form>
+  <form action="/post/{{id}}/like" method = "POST" class="likeForm"> 
+    <div><p>like:{{lengthOfLike}}</p></div> 
+    <div><button type="submit" class = "likeBTN">like!</button></div>
+  </form>
+
+  <form action="/post/{{id}}/dislike" method = "POST" class = "dislikeForm"> 
+    <div><p>dislike:{{lengthOfDislike}}</p></div>
+    <div><button type="submit" class = "dislikeBTN">dislike!</button></div>
+  </form>
+
+
 
   <h3>Comments</h3>
   {{#if comments}}

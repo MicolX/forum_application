@@ -5,7 +5,15 @@ const userData = data.user
 const bcrypt = require('bcryptjs')
 
 router.get('/', async (req, res) => {
-    res.render('signup')
+
+    if (req.session.user) { // add checking cookie expiration
+        res.redirect('/')
+    }
+    else {
+        res.status(403);
+        res.render('signup')
+    };
+    
 })
 
 router.post('/', async (req, res) => {

@@ -1,4 +1,5 @@
 $("#signup-form").submit((event) => {
+    $('#error2').hide()
     let username = $('#username_id').val()
     let email = $('#email_id').val()
     let password1 = $('#password_id').val()
@@ -28,7 +29,7 @@ $("#signup-form").submit((event) => {
 
     if (!password1) {
         event.preventDefault()
-        $('#error').html('Please enter an E-mail')
+        $('#error').html('Please enter an password')
         $('#error').show()
         return
     }

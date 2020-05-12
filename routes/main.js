@@ -5,25 +5,63 @@ const postData = data.post
 
 // check cookie if logged in and not expired, if so render main page if not redirect to login.
 router.get('/', async (req, res) => {
-    if (req.session.user) {
-        console.log('going to main page')
-        res.render('web')
+    if (req.session.user) { // add checking cookie expiration
+        const allPosts = await postData.getAllPost()
+        res.render('web', {posts: allPosts})
     }
     else {
         res.status(403);
-        console.log('going to login')
         res.render('login');
     }
 })
 
-router.get('/search/:searchText', async (req, res) => {
+router.get('/Automobile', async (req, res) => {
+    if (req.session.user) { // add checking cookie expiration
+
+        const allPosts = await postData.getPostByCategory("Automobile")
+        res.render('web', {posts: allPosts, category: "Automobile"})
+    }
+    else {
+        res.status(403);
+        res.render('login');
+    }
+})
+
+router.get('/Food', async (req, res) => {
+    if (req.session.user) { // add checking cookie expiration
+
+        const allPosts = await postData.getPostByCategory("Food")
+        res.render('web', {posts: allPosts, category: "Food"})
+    }
+    else {
+        res.status(403);
+        res.render('login');
+    }
+})
+
+router.get('/Course', async (req, res) => {
+    if (req.session.user) { // add checking cookie expiration
+
+        const allPosts = await postData.getPostByCategory("Course")
+        res.render('web', {posts: allPosts, category: "Course"})
+    }
+    else {
+        res.status(403);
+        res.render('login');
+    }
+})
+
+router.post('/search', async (req, res) => {
 
     try {
-        let matches = await postData.search(req.params.searchText);
-        res.send(matches);
+        if (req.body.searchText.length != 0) {
+            let matches = await postData.search(req.body.searchText);
+            res.render('web', {matches: matches})
+        } 
     }
     catch (e) {
-        res.send("NO MATCHES")
+        res.status(404);
+        res.send('404 error');
     }
 })
 

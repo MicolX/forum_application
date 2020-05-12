@@ -3,8 +3,10 @@ const mainRoutes = require('./main');
 const loginRoutes = require('./login');
 const newRoutes = require('./new');
 const logoutRoutes = require('./logout');
-const userRoutes = require('./user');
-const signupRoutes = require('./signup')
+const signupRoutes = require('./signup');
+const postRoutes = require('./post')
+
+
 
 
 const constructor = (app) => {
@@ -12,8 +14,12 @@ const constructor = (app) => {
     app.use('/login', loginRoutes);
     app.use('/new', newRoutes);
     app.use('/logout', logoutRoutes);
-    app.use('/user', userRoutes);
-    app.use('/signup', signupRoutes)
+    app.use('/signup', signupRoutes);
+    app.use('/post', postRoutes)
+    app.use('*', (req, res) => {
+        res.sendStatus(404)
+    })
+    
 }
 
 module.exports = constructor

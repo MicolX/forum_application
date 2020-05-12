@@ -18,6 +18,10 @@ function jsSearch() {
 
             if (Http.responseText) {
 
+                let postsDiv = document.getElementById("postsDiv")
+
+                postsDiv.innerHTML = "";
+
                 let resultList = document.getElementById("results")
 
                 resultList.innerHTML = "";

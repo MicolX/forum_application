@@ -1,0 +1,33 @@
+
+<link rel="stylesheet" href="/public/css/createPost.css">
+
+<div class="container">
+  <h1>Title : {{title}}</h1>
+  <p>Author : {{author}}</p>
+  <p>Content : {{content}}</p>
+  <h3>Comments</h3>
+  {{#if comments}}
+  {{#each comments}}
+  <div>
+    <h4>{{this.author}}</h4>
+    <p>{{this.content}}</p>
+  </div>
+  {{/each}}
+  {{else}}
+  <p>There's no comment yet.</p>
+  {{/if}}
+  <form action="/post/{{id}}" method="POST" id="add-comment">
+    <label for="commentID">
+        <textarea name="comment" id="commentID" cols="30" rows="10" id="commentID">Wanna say anything?</textarea>
+    </label>
+    <label for="buttonID">
+        <button type="submit" id="buttonID">comment</button>
+    </label>
+    <div id="error" hidden></div>
+  </form>
+    <a href="/">back to main page</a>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="../public/js/addComment_validation.js"></script>
+

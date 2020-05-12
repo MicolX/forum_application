@@ -12,20 +12,30 @@ module.exports = {
             'title': title,
             'author': author,
             'category': category,
-            'content': content
+            'content': content,
+            'comments': [] 
         }
 
         const insertInfo = await postCollection.insertOne(newPost)
         if (insertInfo.insertedCount == 0) throw "Failed to create post into db"
+        return await this.getPost(insertInfo.insertedId)
     },
 
-    async getAllPost(id) {
+    async getPost(id) {
         if (!id) throw 'no id'
         if (typeof id == 'string') id = objectID.createFromHexString(id)
         const postCollection = await post()
         const aPost = await postCollection.findOne({ _id: id })
         if (aPost === null) throw 'No post found'
         return aPost
+    },
+
+    async getPostByCategory(category) {
+        console.log(category)
+        if (!category) throw 'no category'
+        const postCollection = await post()
+        const allPosts = await postCollection.find({"category" : category}).toArray()
+        return allPosts
     },
 
     async getAllPost() {
@@ -65,19 +75,25 @@ module.exports = {
         await postCollection.createIndex({ title: "text", content: "text" })
 
         let matches = await postCollection.find({ $text: { $search: searchTxt, $caseSensitive: false } }).toArray();
-
-        let output = [];
-        let index = 0;
-
+        
         if (matches.length == 0) throw "nomatch"
 
-
-        for (const match of matches) {
-            output.push(JSON.stringify(match))
-            index++;
+        return matches;
+    },
+    async addComment(id, author, comment) {
+        try {
+            if (!id || !author || !comment) throw 'Incomplete info to add comment'
+            const aComment = {
+                author: author,
+                content: comment
+            }
+            if (typeof id == 'string') id = objectID.createFromHexString(id)
+            const postCollection = await post()
+            const updateInfo = await postCollection.updateOne({_id: id}, {$push: {comments: aComment}})
+            if (updateInfo.modifiedCount == 0) throw 'Failed to add comment'
+        } catch(e) {
+            throw e
         }
-
-        return output;
     }
 
 }

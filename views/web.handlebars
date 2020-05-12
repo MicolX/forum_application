@@ -49,11 +49,11 @@
 
 {{/each}}
 
-{{#each matches}}
+{{#each error}}
 
-<div id="searchDiv" class="searchDiv">
-  <a href="/post/{{this._id}}">{{this.title}}</a>
-  <p>Author : {{this.author}} &ensp; Catogory : {{this.category}}</p>
+<div id="error" class="error">
+  <p>ERROR: {{this.err}}</p>
+  <a href="/">GO HOME</a>
 </div>
 
 {{/each}}

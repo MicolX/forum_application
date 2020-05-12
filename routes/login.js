@@ -4,9 +4,10 @@ const bcrypt = require('bcryptjs');
 const data = require('../data')
 const userData = data.user
 
+let tokenArr = {};
 
-// check cookie if already logged in, if so redirect to /, if not compare input password with password in the database, if successful create cookie with expire date an redirect to / . if not render page with error.
 router.post('/', async (req, res) => {
+
 	const body = req.body
 
 	if (!body.username || !body.password) throw 'Incomplete info to log in'
@@ -16,60 +17,52 @@ router.post('/', async (req, res) => {
 
 		// username doesn't exist
 		if (!user) {
-			res.render('login', {fail: true})
+			res.status(401).json({error:"USERNAME DOESNT EXIST"});
 			return
 		}
 
 		const match = await bcrypt.compare(body.password, user.password)
 
 		if (!match) {
-			res.render('login', {fail: true})
+			res.status(401).json({error:"WRONG PASSWORD"});
 			return
 		}
 
-		req.session.user = body.username
-		res.redirect('/')
+		let authToken = Math.random().toString(36).substr(2);
+		tokenArr[authToken] = body.username;
+		res.status(200).json({token:authToken});
 
 	} catch(e) {
+		console.log(e);
+		res.status(408).json({error:e});
 		throw e
 	}
-
-
-	// let databasePass = "";
-	// let databaseIndex;
-
-	// let match = false;
-
-	// for (const [index, user] of userData.entries()) {
-	// 	if (user.username === username) {
-	// 		databasePass = user.hashedPassword;
-	// 		databaseIndex = index;
-	// 		match = bcrypt.compareSync(password, databasePass);
-	// 	};
-	// }
-
-	// if (match == true) {
-	// 	req.session.user = { username: username, dbIndex: databaseIndex };
-	// 	res.redirect('/private');
-	// }
-
-	// if (match == false) {
-	// 	res.status(401);
-	// 	res.render('pages/login_err');
-	// }
-
-});
+})
 
 
 // check cookie if already logged in, if so redirect to /, if not render /login
 router.get('/', async (req, res) => {
-	if (req.session.user) { // add checking cookie expiration
+	if (req.session.user) { 
         res.redirect('/')
     }
     else {
         res.status(403);
         res.render('login');
     };
-});
+}),
+
+//token authentication, if valid token issue session and redirect
+router.get('/:token', async (req, res) => {
+	let token = req.params.token;
+	if(token in tokenArr){
+		req.session.user = tokenArr[token];
+		res.redirect('/');
+		delete tokenArr[token];
+	}else{
+        res.status(403);
+        res.render('login');
+    };
+}
+);
 
 module.exports = router;

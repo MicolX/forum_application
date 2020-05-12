@@ -6,7 +6,7 @@
     <div class="loginbox">
     <img src="/public/images/SITF.jpeg" class="avatar">
         <h1>Login Here</h1>
-        <form action="/login" method="POST" id="login-form">
+        <form id="login-form">
             <label for="login-name">Username</label>
             <input type="text" name="username" placeholder="Enter Username" id="login-name">
             <label for="login-password">Password</label>
@@ -21,5 +21,5 @@
     <div>Please verify your username and password</div>
     {{/if}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="../public/js/login_validation.js"></script>
+    <script src="../public/js/login_ajax.js"></script>
 </body>

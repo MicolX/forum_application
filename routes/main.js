@@ -7,7 +7,7 @@ const postData = data.post
 router.get('/', async (req, res) => {
     if (req.session.user) { // add checking cookie expiration
         const allPosts = await postData.getAllPost()
-        res.render('web', {posts: allPosts})
+        res.render('web', { posts: allPosts })
     }
     else {
         res.status(403);
@@ -19,7 +19,7 @@ router.get('/Automobile', async (req, res) => {
     if (req.session.user) { // add checking cookie expiration
 
         const allPosts = await postData.getPostByCategory("Automobile")
-        res.render('web', {posts: allPosts, category: "Automobile"})
+        res.render('web', { posts: allPosts, category: "Automobile" })
     }
     else {
         res.status(403);
@@ -31,7 +31,7 @@ router.get('/Food', async (req, res) => {
     if (req.session.user) { // add checking cookie expiration
 
         const allPosts = await postData.getPostByCategory("Food")
-        res.render('web', {posts: allPosts, category: "Food"})
+        res.render('web', { posts: allPosts, category: "Food" })
     }
     else {
         res.status(403);
@@ -43,7 +43,7 @@ router.get('/Course', async (req, res) => {
     if (req.session.user) { // add checking cookie expiration
 
         const allPosts = await postData.getPostByCategory("Course")
-        res.render('web', {posts: allPosts, category: "Course"})
+        res.render('web', { posts: allPosts, category: "Course" })
     }
     else {
         res.status(403);
@@ -54,14 +54,26 @@ router.get('/Course', async (req, res) => {
 router.post('/search', async (req, res) => {
 
     try {
-        if (req.body.searchText.length != 0) {
+
+        if (req.body.searchText.length === 0) {
+
+            res.render('web', { error: [{ err: "BLANK SEARCH INPUT" }] })
+
+        }
+        else {
             let matches = await postData.search(req.body.searchText);
-            res.render('web', {matches: matches})
-        } 
+            res.render('web', { posts: matches })
+
+        }
     }
     catch (e) {
-        res.status(404);
-        res.send('404 error');
+        if (e === "nomatch") {
+            res.render('web', { error: [{ err: "NO MATCHES TRY AGAIN" }] })
+        }
+        else {
+            res.status(404);
+            res.send('404 error');
+        }
     }
 })
 

@@ -1,5 +1,5 @@
 var fs = require('fs');
-const data = require('./data');
+const data = require('../data');
 const userData = data.user;
 const postData = data.post;
 const bcrypt = require('bcryptjs')

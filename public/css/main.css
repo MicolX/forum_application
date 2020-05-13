@@ -176,14 +176,16 @@
     .postsDiv{
       display: inline-block;
       text-align: center; 
-      background-color:gainsboro;
+      background-color:#33cccc;
       border-radius: 20px;
-      width: 2525px;
+      width: 100%;
       height: 100px;
       margin: auto;
       position: static;
+      border: 4px solid #009999;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
+      font-family: sans-serif;
     }

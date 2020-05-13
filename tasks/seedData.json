@@ -24,6 +24,11 @@
             "username": "sampUser5",
             "password": "klmnop",
             "email": "suser5@hotmail.com"
+        },
+        {
+            "username": "phill",
+            "password": "qwerty",
+            "email": "phill@hotmail.com"
         }
     ],
     "seedPost": [

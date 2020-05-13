@@ -3,7 +3,7 @@ const data = require('../data');
 const userData = data.user;
 const postData = data.post;
 const bcrypt = require('bcryptjs')
-var json = JSON.parse(fs.readFileSync('./seedData.json').toString());
+var json = JSON.parse(fs.readFileSync('./tasks/seedData.json').toString());
 seedUser = json.seedUser;
 seedPost = json.seedPost;
 

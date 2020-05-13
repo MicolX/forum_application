@@ -6,7 +6,6 @@ const postData = data.post
 router.get('/:id', async (req, res) => {
     try {
         const post = await postData.getPost(req.params.id)
-
         const lengthOfLike = post.like
         const lengthOfDislike = post.dislike
         const render = {
@@ -19,7 +18,8 @@ router.get('/:id', async (req, res) => {
             like: post.like, 
             dislike: post.dislike,
             lengthOfLike: lengthOfLike.length,
-            lengthOfDislike :lengthOfDislike.length
+            lengthOfDislike :lengthOfDislike.length,
+            user: req.session.user
         }
         console.log(render)
         res.render('singlePost', render)

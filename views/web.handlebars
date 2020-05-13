@@ -11,9 +11,12 @@
 <li><a href="/automobile">Automobile</a></li>
 <li><a href="/Food">Food</a></li>
 <li><a href="/Course">Course</a></li>
-<li><a href="/login">Sign in</a></li>
 <li><a href="/signup">Register</a></li>
+{{#if user}}
 <li ><a href="/logout">Logout</a></li>
+{{else}}
+<li><a href="/login">Sign in</a></li>
+{{/if}}
 <li ><a href="/new">Createpost</a></li>
 <li>
   <form action="/search" method="post">
@@ -45,6 +48,7 @@
 <div id="postsDiv" class="postsDiv">
   <a href="/post/{{this._id}}">{{this.title}}</a>
   <p>Author : {{this.author}} &ensp; Catogory : {{this.category}}</p>
+  <p>Likes: {{this.like.length}} and Dislikes: {{this.dislike.length}}</p>
 </div>
 
 {{/each}}

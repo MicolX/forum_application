@@ -1,17 +1,12 @@
 
 <link rel="stylesheet" href="/public/css/createPost.css">
 
-{{#if isAuthor}}
-<div>
-  <a href="/update/{{id}}">Edit</a>
-</div>
-{{/if}}
 
 <div class="container">
-  <h1>Title : {{title}}</h1>
+  <h3 style="text-align: center;">Title : {{title}}</h3>
   <p>Author : {{author}}</p>
   <p>Content : {{content}}</p>
-
+<div class = c1 >
   {{#if user}}
   <form action="/post/{{id}}/like" method = "POST" class="likeForm"> 
     <div><p>like:{{lengthOfLike}}</p></div> 
@@ -23,14 +18,15 @@
     <div><button type="submit" class = "dislikeBTN">dislike!</button></div>
   </form>
   {{/if}}
+</div>
 
-  <h3>Comments</h3>
+  <h4 style="text-align: center;">Comments</h4>
   {{#if comments}}
   {{#each comments}}
-  <div class= "commentsDiv">
+  <p><div class= "commentsDiv">
     <h4>{{this.author}}</h4>
     <p>{{this.content}}</p>
-  </div>
+  </div></p>
   {{/each}}
   {{else}}
   <p>There's no comment yet.</p>
@@ -38,7 +34,7 @@
   {{#if user}}
   <form action="/post/{{id}}" method="POST" id="add-comment">
     <label for="commentID">
-        <textarea name="comment" id="commentID" cols="30" rows="10" id="commentID">Wanna say anything?</textarea>
+        <textarea name="comment" id="commentID" cols="30" rows="10" id="commentID" placeholder="Wanna say anything?"></textarea>
     </label>
     <label for="buttonID">
         <button type="submit" id="buttonID">comment</button>
@@ -46,7 +42,13 @@
     <div id="error" hidden></div>
   </form>
   {{/if}}
-    <a href="/">back to main page</a>
+  {{#if isAuthor}}
+<div >
+  <a href="/update/{{id}}" style=" color: black;font-weight: bold;font-size: 12pt">Edit</a>
+</div>
+{{/if}}
+
+    <a href="/" style="color: black;font-weight: bold;font-size: 12pt">Back to main page</a>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

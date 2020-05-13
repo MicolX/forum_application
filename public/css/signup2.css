@@ -16,7 +16,7 @@ body
     position: relative;
     margin: 5% auto;
     height: 400px;
-    width: 600px;
+    width: 300px;
     background: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
@@ -81,71 +81,7 @@ input[type="submit"]:focus
     transition: 0.2s ease;
 }
 
-.right-box
-{
-    position: absolute;
-    top: 0;
-    right: 0;
-    box-sizing: border-box;
-    background-color: #070707;
-    padding: 40px;
-    width: 300px;
-    height: 400px;
-    background: 070707;
-    
-}
 
-.or
-{
-    position: absolute;
-    top: 180px;
-    left: 280px;
-    width: 40px;
-    height: 40px;
-    background: #efefef;
-    border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-    line-height: 40px;
-    text-align: center;
-}
-
-.right-box .signinwith
-{
-    display: block;
-    margin-bottom: 40px;
-    font-size: 28px;
-    color: #efefef;
-    text-align: center;
-
-}
-
-
-button.social
-{
-    margin-bottom: 20px;
-    width: 220px;
-    height: 36px;
-    border: none;
-    border-radius: 2px;
-    color: #fff;
-    font-family: sans-serif;
-    font-weight: 500;
-    transition: 0.2s ease;
-    cursor: pointer;
-}
-
-.facebook
-{
-    background: #32508e;
-}
-.twitter
-{
-    background: #55acee;
-}
-.google
-{
-    background: #dd4b39;
-}
 
 
 

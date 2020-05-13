@@ -7,7 +7,7 @@ html{
 div.container {
     border-radius: 5px;
     background-color: rgb(10, 201, 235);
-    opacity: 0.78;
+    opacity: 0.8;
     padding: 20px;
   }
 
@@ -37,7 +37,7 @@ textarea{
 
 div{
     font-family: 'Segoe UI SemiBold';
-    font-size: 30px;
+    font-size: 14pt;
     color:black;
     text-align: left;
 }
@@ -45,22 +45,22 @@ div{
 button{
     background-color: darkmagenta;
     color: white;
-    padding: 15px 32px;
+    padding: 10px 22px;
     text-align: center;
-    font-size: 20px;
+    font-size: 10pt;
     margin: 4px 2px;
 }
 
 
 .commentsDiv{
-  font-size: 20px;
+  font-size: 12pt;
     color:black;
     text-align: left;
   display: inline-block;
   background-color:gainsboro;
   border-radius: 20px;
-  width: 2500px;
-  height: 300px;
+  width: 100%;
+  height: fit-content;
   margin: auto;
   position: static;
   top: 0;

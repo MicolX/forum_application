@@ -1,6 +1,9 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <link rel="stylesheet" href="/public/css/createPost.css">
-
+  <title>Posts</title>
+</head>
 
 <div class="container">
   <h3 style="text-align: center;">Title : {{title}}</h3>
@@ -22,11 +25,11 @@
 
   <h4 style="text-align: center;">Comments</h4>
   {{#if comments}}
-  {{#each comments}}
-  <p><div class= "commentsDiv">
+  {{#each comments}}<p></p>
+  <div class= "commentsDiv">
     <h4>{{this.author}}</h4>
     <p>{{this.content}}</p>
-  </div></p>
+  </div>
   {{/each}}
   {{else}}
   <p>There's no comment yet.</p>
@@ -34,7 +37,7 @@
   {{#if user}}
   <form action="/post/{{id}}" method="POST" id="add-comment">
     <label for="commentID">
-        <textarea name="comment" id="commentID" cols="30" rows="10" id="commentID" placeholder="Wanna say anything?"></textarea>
+        <textarea name="comment" id="commentID" cols="30" rows="10"  placeholder="Wanna say anything?"></textarea>
     </label>
     <label for="buttonID">
         <button type="submit" id="buttonID">comment</button>
@@ -53,4 +56,4 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="../public/js/addComment_validation.js"></script>
-
+</html>

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <head>
 <title>Home</title>
 <link rel="stylesheet" href="../public/css/main.css">
@@ -6,7 +7,7 @@
 <body>
   
 <br><br><br>
-<div class = div1><ul style="font-family:sans-serif;  font-size:16pt">
+<div class = div1><ul style="font-family:sans-serif;  font-size:16pt ">
 <li><a href="/">Home</a></li>
 <li><a href="/automobile">Automobile</a></li>
 <li><a href="/Food">Food</a></li>
@@ -17,8 +18,8 @@
 {{else}}
 <li><a href="/login">Sign in</a></li>
 <li><a href="/signup">Register</a></li>
-
 {{/if}}
+
 
 <li>
   <form action="/search" method="post">
@@ -28,14 +29,14 @@
 </ul>
 </div> 
 <div><a href="" target="_blank">
-<img src="/public/images/SITF.jpeg"  class=bgimg height=150px>
+<img src="/public/images/SITF.jpeg"  class=bgimg>
 </a></div>
 <span class=border>
-<img src="/public/images/header-background.jpg"  id="slide" height=250px width=100%>
-<p style="position:absolute; top:110px; right:100px; font-size: 14pt">{{#if user}}
+<img src="/public/images/header-background.jpg"></span>
+<p style="position:absolute; top:145px; right:100px; font-size: 14pt">{{#if user}}
  Hi, {{user}}!
 {{/if}}</p>
-</span> 
+ 
 
 <p style="position:absolute; top:230px; right:600px;font-size:22px;font-family:sans-serif;opacity:.7"><b>About SITForum</b></p>
 <p style="position:absolute; top:300px;left:100px;font-family:arial;">
@@ -45,7 +46,7 @@
     </p>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-{{#each posts}}</p>
+<p>{{#each posts}}</p>
 
 <div id="postsDiv" class="postsDiv">
   <a href="/post/{{this._id}}" style="color: black;font-weight: bold;font-size: large" >{{this.title}}</a>

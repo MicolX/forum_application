@@ -1,5 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> Create Post </title>
 <link rel="stylesheet" href="/public/css/createPost.css">
-
+</head>
+<body>
 <div class="container">
   {{#if update}}
   <h2 style="text-align: center;">Update your post now</h2>
@@ -7,7 +12,7 @@
   <form action="/update/{{id}}" method="POST" id="updatePost">
     <div>
       <label for = "titleID" style="font-weight: bold">Title:</label>
-      <input id = "titleID" type="text" id="titleID" name="title" placeholder="enter your title" value="{{title}}" class="full-width-input"/>  
+      <input id = "titleID" type="text" name="title" placeholder="enter your title" value="{{title}}" class="full-width-input"/>  
     </div>
     
     <div>
@@ -21,7 +26,7 @@
         {{#if autoCategory}}
         <input type="radio" name="category" value="Automobile" id="auto" checked/> Automobile
         {{else}}
-        <input type="radio" name="category" value="Automobile" id="auto"/> Automobile
+        <input type="radio" name="category" value="Automobile" id="auto" /> Automobile
         {{/if}}
       </label>
 
@@ -29,7 +34,7 @@
         {{#if foodCategory}}
         <input type="radio" name="category" value="Food" id="food" checked/> Food
         {{else}}
-        <input type="radio" name="category" value="Food" id="food"/> Food
+        <input type="radio" name="category" value="Food" id="food" /> Food
         {{/if}}
       </label>
 
@@ -37,7 +42,7 @@
         {{#if courseCategory}}
         <input type="radio" name="category" value="Course" id="course" checked/> Course
         {{else}}
-        <input type="radio" name="category" value="Course" id="course"/> Course
+        <input type="radio" name="category" value="Course" id="course" /> Course
         {{/if}}
       </label>
     </div>
@@ -85,4 +90,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="../public/js/createPost_validation.js"></script>
 </div>
+</body>
+</html>
 

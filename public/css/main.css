@@ -18,11 +18,9 @@
     z-index:3;
     }
 
+
     
-    .bg label
-    {
-    marign-right:400px;
-    }
+    
     
     /*logo*/
     div a .bgimg
@@ -30,7 +28,8 @@
     position:absolute;
     top:95px;
     left:45px;
-    cursor:hand;
+    height: 150px;
+    cursor:default;
     -webkit-animation-name: logo;
     -webkit-animation-duration: .55s;
     -webkit-animation-delay: .5s;
@@ -83,64 +82,7 @@
     {
     color:white;
     }
-    ul li ul {
-      padding: 0;
-      position: absolute;
-      top: 26.5px;
-      left: -22px;
-      width: 250px;
-      height:180px;
-      -webkit-box-shadow: none;
-      -moz-box-shadow: none;
-      box-shadow: none;
-      display: none;
-      opacity: 0;
-    visibility:none;
-      -webkit-transiton: opacity 0.2s;
-      -moz-transition: opacity 0.2s;
-      -ms-transition: opacity 0.2s;
-      -o-transition: opacity 0.2s;
-      -transition: opacity 0.2s;
-    }
-    ul li ul li { 
-    position:relative;
-      padding-left:25px;
-      padding-top:15px;
-      padding-bottom:15px;
-      background: #555; 
-      display: block; 
-      color: #fff;
-      text-shadow: 0 -1px 0 #000;
-    z-index:4;
-    }
-    ul li ul li:hover { background: #666; }
-    ul li:hover ul {
-      display: block;
-      opacity: 1;
-      visibility: visible;
-    }
-    ul li ul li ul li{
-    position:relative;
-    top:-19px;
-    left:220px;
-    display:none;
-    visibility:none;
-    }
-    ul li ul li ul:hover li
-    {
-    display:block;
-    visibility:visible;
-    }
-    ul li ul li ul li ul li{
-    position:relative;
-    top:-19px;
-    left:220px;
-    opacity:0;
-    }
-    ul li ul li ul li ul:hover li
-    {
-    opacity:1;
-    }
+    
     .border
     {
     position:absolute;

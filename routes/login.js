@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const data = require('../data');
 const userData = data.user;
 const tokenData = data.token;
+const xss = require('xss')
 
 let tokenArr = {};
 

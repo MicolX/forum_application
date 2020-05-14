@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 const data = require('../data')
 const postData = data.post
+const xss = require('xss')
 
 router.get('/:id', async (req, res) => {
     try {
-        const post = await postData.getPost(req.params.id)
+        const post = await postData.getPost(xss(req.params.id))
         const lengthOfLike = post.like
         const lengthOfDislike = post.dislike
         const render = {
@@ -33,7 +34,7 @@ router.post('/:id', async (req, res) => {
         const id = req.params.id
         const username = req.session.user
         const comment = req.body.comment
-        await postData.addComment(id, username, comment)
+        await postData.addComment(xss(id), xss(username), xss(comment))
         res.redirect('/post/'+id)
     } catch(e) {
         res.status(400).json({error: e})
@@ -50,14 +51,14 @@ router.post('/:id/like', async (req, res) => {
         const dislikeArr = post.dislike
 
         if(!likeArr.includes(username) && !dislikeArr.includes(username)) {
-            await postData.addLike(id,username)
+            await postData.addLike(xss(id), xss(username))
             res.redirect('/post/'+id)
         }else if(likeArr.includes(username) && !dislikeArr.includes(username)){
-            await postData.deleteLike(id,username)
+            await postData.deleteLike(xss(id), xss(username))
             res.redirect('/post/'+id)
         }else if(!likeArr.includes(username) && dislikeArr.includes(username)){
-            await postData.deleteDislike(id,username)
-            await postData.addLike(id,username)
+            await postData.deleteDislike(xss(id), xss(username))
+            await postData.addLike(xss(id), xss(username))
             res.redirect('/post/'+id)
         }
         else{
@@ -82,18 +83,18 @@ router.post('/:id/dislike', async (req, res) => {
 
 
         if(!likeArr.includes(username) && !dislikeArr.includes(username)) {
-            await postData.addDislike(id,username)
-            res.redirect('/post/'+id)
+            await postData.addDislike(xss(id),xss(username))
+            res.redirect('/post/'+xss(id))
         }else if(!likeArr.includes(username) && dislikeArr.includes(username)){
-            await postData.deleteDislike(id,username)
-            res.redirect('/post/'+id)
+            await postData.deleteDislike(xss(id),xss(username))
+            res.redirect('/post/'+xss(id))
         }else if(likeArr.includes(username) && !dislikeArr.includes(username)){
-            await postData.deleteLike(id,username)
-            await postData.addDislike(id,username)
-            res.redirect('/post/'+id)
+            await postData.deleteLike(xss(id), xss(username))
+            await postData.addDislike(xss(id), xss(username))
+            res.redirect('/post/'+xss(id))
         }
         else{
-            res.redirect('/post/'+id)
+            res.redirect('/post/'+xss(id))
         }
 
     } catch(e) {

@@ -3,6 +3,7 @@ const router = express.Router()
 const data = require('../data')
 const userData = data.user
 const bcrypt = require('bcryptjs')
+const xss = require('xss')
 
 router.get('/', async (req, res) => {
 
@@ -28,7 +29,7 @@ router.post('/', async (req, res) => {
 
     try {
         // check duplicate username
-        if (await userData.userExist(body.username)) {
+        if (await userData.userExist(xss(body.username))) {
             res.render('signup', {duplicate_username: true})
             return
         }
@@ -37,7 +38,7 @@ router.post('/', async (req, res) => {
         let passwordHashed = await bcrypt.hash(body.password, 5)
 
         // create a new user in db
-        let result = await userData.addUser(body.username, passwordHashed, body.email)
+        let result = await userData.addUser(xss(body.username), xss(passwordHashed), xss(body.email))
         if (result) {
             res.redirect('/login')
         } else {

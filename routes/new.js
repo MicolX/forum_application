@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const data = require('../data')
 const postData = data.post
+const xss = require('xss')
 
 // render create post page only if logged in (check cookie), if not logged in redirect to login
 router.get('/', async (req, res) => {
@@ -22,7 +23,7 @@ router.post('/', async (req, res) => {
         if (! body.title || !body.content || !body.category) throw "Incomplete info to create post"
         const username = req.session.user
         try {
-            const newPost = await postData.createPost(body.title, username, body.category, body.content)
+            const newPost = await postData.createPost(xss(body.title), xss(username), xss(body.category), xss(body.content))
             const id = String(newPost._id)
             res.redirect('/post/'+id)
         } catch(e) {

@@ -1,6 +1,6 @@
 <head>
   <title> Signup Form Design Tutorial </title>   
-  <link rel="stylesheet" type="text/css" href="/public/css/signup2.css">
+  <link rel="stylesheet" type="text/css" href="/public/css/signup.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -32,9 +32,12 @@
             </label>
             
           </form>
+          <form action="/">
+            <input type="submit" value="Cancel" />
+          </form>
           <div id='error' hidden></div>
-          {{#if duplicate_username}}
-          <div id="error2">This username has already been taken.</div>
+          {{#if duplicate}}
+          <div id="error2">{{duplicate}}</div>
           {{/if}}
         </div>
         

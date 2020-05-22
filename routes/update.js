@@ -7,7 +7,10 @@ const xss = require('xss')
 router.get('/:id', async (req, res) => {
     try {
         const post = await postData.getPost(req.params.id)
-        if (post.author != req.session.user) res.redirect('/')
+        if (post.author != req.session.user) {
+            res.redirect('/')
+            return
+        }
         res.render('createPost', {
             update: true, 
             id: req.params.id,

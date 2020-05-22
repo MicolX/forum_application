@@ -29,8 +29,14 @@ router.post('/', async (req, res) => {
 
     try {
         // check duplicate username
-        if (await userData.userExist(xss(body.username))) {
-            res.render('signup', {duplicate_username: true})
+        if (await userData.getUser(xss(body.username))) {
+            res.render('signup', {duplicate: 'This username has already been taken.'})
+            return
+        }
+
+        // check duplicate email
+        if (await userData.checkEmail(xss(body.email))) {
+            res.render('signup', {duplicate: 'This E-mail has already been used.'})
             return
         }
 

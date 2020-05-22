@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
 		const user = await userData.getUser(body.username)
 
 		if (!user) {
-			res.status(401).json({ error: "USERNAME DOESNT EXIST" });
+			res.status(401).json({ error: "USERNAME DOESN'T EXIST" });
 			return
 		}
 
@@ -52,7 +52,7 @@ router.get('/:token', async (req, res) => {
 	let loginToken = req.params.token;
 	if (loginToken in tokenArr) {
 
-	let sessionToken = Math.random().toString(36).substr(2);
+		let sessionToken = Math.random().toString(36).substr(2);
 
 		req.session.user = tokenArr[loginToken];
 		req.session.sessionToken = sessionToken;

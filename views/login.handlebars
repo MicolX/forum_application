@@ -1,7 +1,7 @@
 
 <head>
 <title>Login Form Design</title>
-    <link rel="stylesheet" type="text/css" href="/public/css/login2.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/login.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -16,9 +16,13 @@
             <label for="login-password">Password</label>
             <input type="password" name="password" placeholder="Enter Password" id="login-password">
             <label for="submit"><input type="submit" value="Login" id="submit"></label>
-            <a href="#">Forgot password?</a><br>
-            <a href="http://localhost:3000/signup">Haven't created an account yet?</a>
         </form>
+        <form action="/">
+            <label for="cancel">
+                <input type="submit" value="Cancel">
+            </label>
+        </form>
+        <a href="/signup">Haven't created an account yet?</a>
     </div>
     <div id="error" hidden></div>
     {{#if fail}}

@@ -22,7 +22,6 @@ router.get('/:id', async (req, res) => {
             lengthOfDislike :lengthOfDislike.length,
             user: req.session.user
         }
-        console.log(render)
         res.render('singlePost', render)
     } catch(e){
         res.status(404).json({error: e})
@@ -84,17 +83,17 @@ router.post('/:id/dislike', async (req, res) => {
 
         if(!likeArr.includes(username) && !dislikeArr.includes(username)) {
             await postData.addDislike(xss(id),xss(username))
-            res.redirect('/post/'+xss(id))
+            res.redirect('/post/'+id)
         }else if(!likeArr.includes(username) && dislikeArr.includes(username)){
             await postData.deleteDislike(xss(id),xss(username))
-            res.redirect('/post/'+xss(id))
+            res.redirect('/post/'+id)
         }else if(likeArr.includes(username) && !dislikeArr.includes(username)){
             await postData.deleteLike(xss(id), xss(username))
             await postData.addDislike(xss(id), xss(username))
-            res.redirect('/post/'+xss(id))
+            res.redirect('/post/'+id)
         }
         else{
-            res.redirect('/post/'+xss(id))
+            res.redirect('/post/'+id)
         }
 
     } catch(e) {

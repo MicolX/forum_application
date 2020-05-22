@@ -23,11 +23,10 @@ module.exports = {
         return foundUser
     },
 
-    async userExist(username) {
+    async checkEmail(email) {
         const userCollection = await user()
-        const foundUser = await userCollection.findOne({username: username})
-        if (foundUser === null) return false
-        return true
+        const result = await userCollection.findOne({email: email})
+        return result
     },
 
     async updatePassword(id, password) {
@@ -42,5 +41,6 @@ module.exports = {
         const userCollection = await user()
         const updateInfo = await userCollection.updateOne({_id: id}, {email: Email})
         if (updateInfo.modifiedCount == 0) throw "Failed to update user data"
-    }
+    },
+
 }

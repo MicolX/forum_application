@@ -35,7 +35,6 @@ $("#submit").click(function () {
         success: function (data) {
             let token = data.token
             window.location.href = "http://localhost:3000/login/"+token
-            //console.log('Success');
         },
         error: function (jqXHR, exception) {
 

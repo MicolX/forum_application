@@ -59,7 +59,7 @@ input[type="password"]
 
 input[type="submit"]
 {
-    margin-bottom: 28px;
+    margin-bottom: 20px;
     width: 120px;
     height: 32px;
     background: #f44336;
@@ -82,9 +82,15 @@ input[type="submit"]:focus
 }
 
 
+#error
+{
+    position: relative;
+    color: red;
+}
 
-
-
-
-
+#error2
+{
+    position: relative;
+    color: red;
+}
 
